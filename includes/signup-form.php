@@ -28,8 +28,9 @@ if (isset($_POST['signup'])) {
       }
       // Created the account
       else {
-        echo 'Register success';
-        die;
+        $user_id = $getFromU->create('users', array('email' => $email, 'password' => md5($password), 'screenName' => $screenName, 'profileImage' => 'assets/images/defaultProfileImage.png', 'profileCover' => 'assets/iamges/defaultCoverImage.png'));
+        $_SESSION['user_id'] = $user_id;
+        header('Location: includes/signup.php?step=1');
       }
     }
   }
